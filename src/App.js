@@ -34,16 +34,76 @@ function App() {
     setInitialMoney(event.target.value);
   }
 
+  // handle time range input
   const inputTimeRange = async (event) => {  
     var list = document.getElementById("selectTimeRange");  
     setTimeRange(list.options[list.selectedIndex].value);  
   } 
 
+  // handle company input
   const inputCompany = async (event) => {
     var list = document.getElementById("selectCompany"); 
     setCompany(list.options[list.selectedIndex].value);
   }
 
+  // parse txt result
+  const parseResultText = (resultTextJson) => {
+    setTextBox(resultTextJson["buy"]);
+  }
+
+  // parse image result
+  const parseResultImage = (resultImgBytes) => {
+
+  }
+
+  // asynchronous function to handle http GET request to api url
+  // accept "resultRecieved", returns the same promise
+  const handleHttpGETRequest = async (resultReceived) => {
+    if (resultReceived) {
+      // re-enable submit button
+      setButtonDisable(false);
+      setButtonText('Submit');
+    } 
+    
+    else {
+      setTimeout(() => {}, 15000); // wait for every 15 seconds
+
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      // GET request succeeded
+      if (data.statusCode == 200) {
+        // retrive the results from response
+        var imageBytesData = JSON.parse(data.body)["result_img"];
+        var textData = JSON.parse(data.body)["result_txt"];
+
+        // parse the result image
+        parseResultImage(imageBytesData);
+
+        // parse the result text
+        parseResultText(textData);
+
+        // end the while loop
+        resultReceived = true;
+      }
+    }
+
+    return resultReceived;
+  }
+
+  // create a chain of GET requests
+  const createChainOfGETs = async (num, resultReceived) => {
+    for (let i = 0; i < num; i++) {
+      setOutputConsole(i.toString()+" GET requests created.");
+      resultReceived = await handleHttpGETRequest(resultReceived);
+      if (resultReceived) {
+        console.log("GET result received!");
+        break;
+      }
+    }
+  }
+
+  // handle submit
   const handleSubmitDebug = (event) => {
     event.preventDefault();
 
@@ -71,50 +131,24 @@ function App() {
         const outputErrorMessage = JSON.parse(data.errorMessage)['outputResultsData'];
         setOutputConsole(outputErrorMessage);
         console.log("fail to submit POST request")
+
+        // re-enable submit button
+        setButtonDisable(false);
+        setButtonText('Submit');
       }
 
       // POST request success
       else {
         console.log("successfully submitted POST request, trying to GET result...")
         setOutputConsole("Input submitted successfully.\n Waiting for training results......")
+
         // start submitting GET requests and wait for the results to be downloaded
         let resultReceived = false;
-        let numberOfGET = 0;
 
         // as most as 240 GET requests (wait for at most 4 min)
-        for (let i = 0; i < 16; i++) {
-          setTimeout(() => {
-            fetch(apiUrl).then(response => response.json())
-            .then(data => {
-              // the get requset failed
-              if (data.statusCode == 400) {
-                // TODO: showcase some book keeping
-                setTextBox(numberOfGET.toString()+" GET requests so far.")
-              } else {
-                // parse the result image
-                var imageBytesData = JSON.parse(data.body)["result_img"]
-                // parse the result type
-                var textData = JSON.parse(data.body)["result_txt"]
-                setTextBox(textData["buy"])
+        createChainOfGETs(16, resultReceived);
 
-                // end the while loop
-                resultReceived = true;
-              }
-            })
-          }, 15000); // execute get request every 15 seconds
-          if (resultReceived) {
-            break
-          }
-          numberOfGET ++;
-        }
       }
-
-      // re-enable submit button
-      setButtonDisable(false);
-      setButtonText('Submit');
-    })
-    .then(() => {
-      console.log('POST request success');
     })
   }
   
