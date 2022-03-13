@@ -66,7 +66,7 @@ function App() {
     } 
     
     else {
-      setTimeout(() => {}, 15000); // wait for every 15 seconds
+      setTimeout(() => {console.log("timeout in 15 seconds")}, 15000); // wait for every 15 seconds
 
       const response = await fetch(apiUrl);
       const data = await response.json();
@@ -76,9 +76,9 @@ function App() {
         // retrive the results from response
         var imageBytesData = data.body.result_img;
         var textData = data.body.result_txt;
-        console.log(data.body)
-        console.log(imageBytesData)
-        console.log(textData)
+        console.log(data.body);
+        console.log(imageBytesData);
+        console.log(textData);
 
         // parse the result image
         parseResultImage(imageBytesData);
@@ -153,7 +153,7 @@ function App() {
         let resultReceived = false;
 
         // as most as 240 GET requests (wait for at most 4 min)
-        createChainOfGETs(16, resultReceived);
+        createChainOfGETs(50, resultReceived);
 
       }
     })
