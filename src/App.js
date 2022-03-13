@@ -13,7 +13,7 @@ const decodeFileBase64 = (base64String) => {
 
 
 function App() {
-  apiUrl = 'https://l5c29682bl.execute-api.us-east-1.amazonaws.com/dev/';
+  const apiUrl = 'https://l5c29682bl.execute-api.us-east-1.amazonaws.com/dev/';
 
   // const [inputFileData, setInputFileData] = React.useState(''); // represented as bytes data (string)
   // const [outputFileData, setOutputFileData] = React.useState(''); // represented as readable data (text string)
@@ -31,95 +31,95 @@ function App() {
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
 
-  // convert file to bytes data
-  const convertFileToBytes = (inputFile) => {
-    console.log('converting file to bytes...');
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(inputFile); // reads file as bytes data
+  // // convert file to bytes data
+  // const convertFileToBytes = (inputFile) => {
+  //   console.log('converting file to bytes...');
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(inputFile); // reads file as bytes data
 
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
 
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  }
+  //     fileReader.onerror = (error) => {
+  //       reject(error);
+  //     };
+  //   });
+  // }
 
   // handle file input
-  const handleChange = async (event) => {
-    // Clear output text.
-    setOutputFileData("");
+  // const handleChange = async (event) => {
+  //   // Clear output text.
+  //   setOutputFileData("");
 
-    console.log('newly uploaded file');
-    const inputFile = event.target.files[0];
-    console.log(inputFile);
+  //   console.log('newly uploaded file');
+  //   const inputFile = event.target.files[0];
+  //   console.log(inputFile);
 
-    // convert file to bytes data
-    const base64Data = await convertFileToBytes(inputFile);
-    const base64DataArray = base64Data.split('base64,'); // need to get rid of 'data:image/png;base64,' at the beginning of encoded string
-    const encodedString = base64DataArray[1];
-    setInputFileData(encodedString);
-    console.log('file converted successfully');
+  //   // convert file to bytes data
+  //   const base64Data = await convertFileToBytes(inputFile);
+  //   const base64DataArray = base64Data.split('base64,'); // need to get rid of 'data:image/png;base64,' at the beginning of encoded string
+  //   const encodedString = base64DataArray[1];
+  //   setInputFileData(encodedString);
+  //   console.log('file converted successfully');
 
-    // enable submit button
-    setButtonDisable(false);
-  }
+  //   // enable submit button
+  //   setButtonDisable(false);
+  // }
 
-  // handle file submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // // handle file submission
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
 
-    // temporarily disable submit button
-    setButtonDisable(true);
-    setButtonText('Loading Result');
+  //   // temporarily disable submit button
+  //   setButtonDisable(true);
+  //   setButtonText('Loading Result');
 
-    // make POST request
-    console.log('making POST request...');
-    fetch('<api-url>', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json", "Accept": "text/plain" },
-      body: JSON.stringify({ "image": inputFileData })
-    }).then(response => response.json())
-    .then(data => {
-      console.log('getting response...');
-      console.log(data);
+  //   // make POST request
+  //   console.log('making POST request...');
+  //   fetch('<api-url>', {
+  //     method: 'POST',
+  //     headers: { "Content-Type": "application/json", "Accept": "text/plain" },
+  //     body: JSON.stringify({ "image": inputFileData })
+  //   }).then(response => response.json())
+  //   .then(data => {
+  //     console.log('getting response...');
+  //     console.log(data);
 
-      // POST request error
-      if (data.statusCode === 400) {
-        const outputErrorMessage = JSON.parse(data.errorMessage)['outputResultsData'];
-        setOutputFileData(outputErrorMessage);
-      }
+  //     // POST request error
+  //     if (data.statusCode === 400) {
+  //       const outputErrorMessage = JSON.parse(data.errorMessage)['outputResultsData'];
+  //       setOutputFileData(outputErrorMessage);
+  //     }
 
-      // POST request success
-      else {
-        setOutputConsole("Input submitted successfully.\n Waiting for training results...\n")
-        // continuous GET requests until success
-        while (true) {
-          fetch(apiUrl).then(response => response.json())
-            .then(data => {
-              if (data.statusCode == 400) {
+  //     // POST request success
+  //     else {
+  //       setOutputConsole("Input submitted successfully.\n Waiting for training results...\n")
+  //       // continuous GET requests until success
+  //       while (true) {
+  //         fetch(apiUrl).then(response => response.json())
+  //           .then(data => {
+  //             if (data.statusCode == 400) {
 
-              } else {
-                var imageBytesData = JSON.parse(data.body)["result_img"]
-              }
-            })
-        }
+  //             } else {
+  //               var imageBytesData = JSON.parse(data.body)["result_img"]
+  //             }
+  //           })
+  //       }
 
-        // const outputBytesData = JSON.parse(data.body)['outputResultsData'];
-        // setOutputFileData(decodeFileBase64(outputBytesData));
-      }
+  //       // const outputBytesData = JSON.parse(data.body)['outputResultsData'];
+  //       // setOutputFileData(decodeFileBase64(outputBytesData));
+  //     }
 
-      // re-enable submit button
-      setButtonDisable(false);
-      setButtonText('Submit');
-    })
-    .then(() => {
-      console.log('POST request success');
-    })
-  }
+  //     // re-enable submit button
+  //     setButtonDisable(false);
+  //     setButtonText('Submit');
+  //   })
+  //   .then(() => {
+  //     console.log('POST request success');
+  //   })
+  // }
 
   // handle initial money input
   const inputInitialMoney = async (event) => {
@@ -189,9 +189,6 @@ function App() {
     .then(() => {
       console.log('POST request success');
     })
-
-    // const debugMessage = initialMoney + ' ' + timeRange + ' ' + company;
-    // setTextBox(debugMessage);
   }
   
   return (
