@@ -184,9 +184,6 @@ function App() {
                 resultReceived = true;
               }
             })
-
-          // sleep every 10 seconds
-          Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10000);
         } // end while
       }
 
