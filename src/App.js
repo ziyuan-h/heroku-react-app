@@ -137,7 +137,7 @@ function App() {
     <div className="App">
       <div className="Input">
         <h1>Input</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitDebug}>
           <div>
             <b> Select time range from the list</b>  
             <select id="selectTimeRange" onchange={inputTimeRange} required>  
