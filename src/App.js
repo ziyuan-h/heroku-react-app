@@ -111,23 +111,16 @@ function App() {
 
   const inputTimeRange = async (event) => {  
     var list = document.getElementById("selectTimeRange");  
-    setTimeRange(list.options[list.selectedIndex].text);  
+    setTimeRange(list.options[list.selectedIndex].value);  
   } 
 
   const inputCompany = async (event) => {
     var list = document.getElementById("selectCompany"); 
-    const companyName = list.options[list.selectedIndex].text;
-    if (companyName == "Google") {
-      setCompany("goog");
-    } else {
-      setCompany("goog");
-    }
-
-    
+    setCompany(list.options[list.selectedIndex].value);
   }
 
   const handleSubmitDebug = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     const debugMessage = initialMoney + ' ' + timeRange + ' ' + company;
     setTextBox(debugMessage);
@@ -139,20 +132,18 @@ function App() {
         <h1>Input</h1>
         <form onSubmit={handleSubmitDebug}>
           <div>
-            <b> Select time range from the list</b>  
-            <select id="selectTimeRange" onchange={inputTimeRange} required>  
-              <option> ---Choose Time Range--- </option>  
-              <option> year </option>  
-              <option> month </option>  
-              <option> week </option>   
+          <label for="selectTimeRange">Select time range from the list: </label>  
+            <select id="selectTimeRange" onchange={inputTimeRange} required >  
+              <option value="year"> year </option>  
+              <option value="month"> month </option>  
+              <option value="week"> week </option>   
             </select>
             <span class="validity"></span>
           </div>
           <div>
-            <b> Select company from the list</b>  
+              <label for="selectCompany">Select company from the list: </label>  
               <select id="selectCompany" onchange={inputCompany} required>  
-                <option> ---Choose Company--- </option>  
-                <option> Google </option>  
+                <option value="goog"> Google </option>  
               </select>
               <span class="validity"></span>
             </div>
