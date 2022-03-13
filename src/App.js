@@ -19,7 +19,7 @@ function App() {
   const [buttonText, setButtonText] = React.useState('Submit');
 
   // my modification
-  const [initialMoney, setInitialMoney] = React.useState(1000);
+  const [initialMoney, setInitialMoney] = React.useState('1000');
 
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
@@ -101,19 +101,26 @@ function App() {
     })
   }
 
+  // handle initial money input
+  const inputInitialMoney = async (event) => {
+    // retrive input initial money value
+    setInitialMoney(event.target.value)
+  }
+
   return (
     <div className="App">
       <div className="Input">
         <h1>Input</h1>
         <form onSubmit={handleSubmit}>
-          <label for="initial_money">Initial money to invest (from 1000 to 1e6): </label>
-          <input id="initial_money" type="number" value={initialMoney} 
-              min="1000" max="1000000" step="100" required
-              placeholder="Float between 1e3 and 1e6" 
-              onChange={setInitialMoney}/>
-          <span class="validity"></span>
-          {/* <input type="file" accept=".png" onChange={handleChange} /> */}
-          <button type="submit" disabled={buttonDisable}>{buttonText}</button>
+          <div>
+            <label for="initial_money">Initial money to invest (from 1000 to 1e6): </label>
+            <input id="initial_money" type="number" name="initial_money" min="1000" max="1000000" step="100" required
+                placeholder="e.g. 1000" />
+            <span class="validity"></span>
+          </div>
+          <div>
+            <button type="submit" disabled={buttonDisable}>{buttonText}</button>
+          </div>
         </form>
       </div>
       <div className="Output">
@@ -121,9 +128,9 @@ function App() {
         <p>{outputFileData}</p>
       </div>
       <div className="Debug_Report">
-        <b>
+        <p>
           {textBox}
-        </b>
+        </p>
       </div>
     </div>
   );
