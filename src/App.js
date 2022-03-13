@@ -127,7 +127,7 @@ function App() {
   const handleSubmitDebug = (event) => {
     event.preventDefault();
 
-    debugMessage = initialMoney + ' ' + timeRange + ' ' + company;
+    const debugMessage = initialMoney + ' ' + timeRange + ' ' + company;
     setTextBox(debugMessage);
   }
   
