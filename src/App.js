@@ -121,11 +121,6 @@ function App() {
   //   })
   // }
 
-  // sleep function
-  const sleep = ms => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
   // handle initial money input
   const inputInitialMoney = async (event) => {
     setInitialMoney(event.target.value);
@@ -191,7 +186,7 @@ function App() {
             })
 
           // sleep every 10 seconds
-          await sleep(10000); 
+          Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10000);
         } // end while
       }
 
