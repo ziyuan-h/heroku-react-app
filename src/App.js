@@ -13,15 +13,20 @@ const decodeFileBase64 = (base64String) => {
 
 
 function App() {
-  const [inputFileData, setInputFileData] = React.useState(''); // represented as bytes data (string)
-  const [outputFileData, setOutputFileData] = React.useState(''); // represented as readable data (text string)
+  apiUrl = 'https://l5c29682bl.execute-api.us-east-1.amazonaws.com/dev/';
+
+  // const [inputFileData, setInputFileData] = React.useState(''); // represented as bytes data (string)
+  // const [outputFileData, setOutputFileData] = React.useState(''); // represented as readable data (text string)
   const [buttonDisable, setButtonDisable] = React.useState(false);
   const [buttonText, setButtonText] = React.useState('Submit');
 
-  // my modification
+  // input parameters
   const [initialMoney, setInitialMoney] = React.useState('1000');
-  const [timeRange, setTimeRange] = React.useState('year')
-  const [company, setCompany] = React.useState('goog')
+  const [timeRange, setTimeRange] = React.useState('year');
+  const [company, setCompany] = React.useState('goog');
+
+  // output console
+  const [outputConsole, setOutputConsole] = React.useState('');
 
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
@@ -79,7 +84,7 @@ function App() {
       body: JSON.stringify({ "image": inputFileData })
     }).then(response => response.json())
     .then(data => {
-      console.log('getting response...')
+      console.log('getting response...');
       console.log(data);
 
       // POST request error
@@ -90,8 +95,21 @@ function App() {
 
       // POST request success
       else {
-        const outputBytesData = JSON.parse(data.body)['outputResultsData'];
-        setOutputFileData(decodeFileBase64(outputBytesData));
+        setOutputConsole("Input submitted successfully.\n Waiting for training results...\n")
+        // continuous GET requests until success
+        while (true) {
+          fetch(apiUrl).then(response => response.json())
+            .then(data => {
+              if (data.statusCode == 400) {
+
+              } else {
+                var imageBytesData = JSON.parse(data.body)["result_img"]
+              }
+            })
+        }
+
+        // const outputBytesData = JSON.parse(data.body)['outputResultsData'];
+        // setOutputFileData(decodeFileBase64(outputBytesData));
       }
 
       // re-enable submit button
@@ -119,10 +137,61 @@ function App() {
   }
 
   const handleSubmitDebug = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
 
-    const debugMessage = initialMoney + ' ' + timeRange + ' ' + company;
-    setTextBox(debugMessage);
+    // temporarily disable the submit button
+    setButtonDisable(true);
+    setButtonText('Loading Result');
+
+    // make POST request
+    console.log('making POST request...');
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: { "Content-Type": "application/json", "Accept": "text/plain" },
+      body: JSON.stringify({ "model_params": timeRange+','+company+','+initialMoney })
+    }).then(response => response.json())
+    .then(data => {
+      console.log('getting response...')
+      console.log(data);
+
+      // POST request error
+      if (data.statusCode === 400) {
+        const outputErrorMessage = JSON.parse(data.errorMessage)['outputResultsData'];
+        setOutputConsole(outputErrorMessage);
+      }
+
+      // POST request success
+      else {
+        setOutputConsole("Input submitted successfully.\n Waiting for training results......")
+        // start submitting GET requests and wait for the results to be downloaded
+        var resultReceived = false;
+        while (!resultReceived) {
+          fetch(apiUrl).then(response => response.json())
+            .then(data => {
+              // the get requset failed
+              if (data.statusCode == 400) {
+                // TODO: showcase some book keeping
+              } else {
+                var imageBytesData = JSON.parse(data.body)["result_img"]
+                var textData = JSON.parse(data.body)["result_txt"]
+                setTextBox(textData["buy"])
+                // end the while loop
+                resultReceived = true;
+              }
+            })
+        } // end while
+      }
+
+      // re-enable submit button
+      setButtonDisable(false);
+      setButtonText('Submit');
+    })
+    .then(() => {
+      console.log('POST request success');
+    })
+
+    // const debugMessage = initialMoney + ' ' + timeRange + ' ' + company;
+    // setTextBox(debugMessage);
   }
   
   return (
@@ -159,7 +228,7 @@ function App() {
       </div>
       <div className="Output">
         <h1>Results</h1>
-        <p>{outputFileData}</p>
+        <p>{outputConsole}</p>
       </div>
       <div className="Debug_Report">
         <p>
