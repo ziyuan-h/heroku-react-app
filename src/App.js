@@ -141,7 +141,7 @@ function App() {
     setCompany(list.options[list.selectedIndex].value);
   }
 
-  const handleSubmitDebug = (event) => {
+  const handleSubmitDebug = async (event) => {
     event.preventDefault();
 
     // temporarily disable the submit button
@@ -189,7 +189,9 @@ function App() {
                 resultReceived = true;
               }
             })
-          await sleep(10000); // sleep every 10 seconds
+
+          // sleep every 10 seconds
+          await sleep(10000); 
         } // end while
       }
 
