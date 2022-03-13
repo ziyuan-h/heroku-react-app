@@ -15,7 +15,7 @@ const decodeFileBase64 = (base64String) => {
 function App() {
   const [inputFileData, setInputFileData] = React.useState(''); // represented as bytes data (string)
   const [outputFileData, setOutputFileData] = React.useState(''); // represented as readable data (text string)
-  const [buttonDisable, setButtonDisable] = React.useState(true);
+  const [buttonDisable, setButtonDisable] = React.useState(false);
   const [buttonText, setButtonText] = React.useState('Submit');
 
   // my modification
@@ -122,6 +122,8 @@ function App() {
     } else {
       setCompany("goog");
     }
+
+    
   }
 
   const handleSubmitDebug = (event) => {
@@ -138,19 +140,21 @@ function App() {
         <form onSubmit={handleSubmit}>
           <div>
             <b> Select time range from the list</b>  
-            <select id="selectTimeRange" onchange={inputTimeRange} >  
+            <select id="selectTimeRange" onchange={inputTimeRange} required>  
               <option> ---Choose Time Range--- </option>  
               <option> year </option>  
               <option> month </option>  
               <option> week </option>   
             </select>
+            <span class="validity"></span>
           </div>
           <div>
             <b> Select company from the list</b>  
-              <select id="selectCompany" onchange={inputCompany} >  
+              <select id="selectCompany" onchange={inputCompany} required>  
                 <option> ---Choose Company--- </option>  
                 <option> Google </option>  
               </select>
+              <span class="validity"></span>
             </div>
           <div>
             <label for="initial_money">Initial money to invest (from 1000 to 1e6): </label>
