@@ -78,14 +78,18 @@ function App() {
         console.log("successfully submitted POST request, trying to GET result...")
         setOutputConsole("Input submitted successfully.\n Waiting for training results......")
         // start submitting GET requests and wait for the results to be downloaded
-        var resultReceived = false;
-        while (!resultReceived) {
+        let resultReceived = false;
+        let numberOfGET = 0;
+
+        // as most as 240 GET requests (wait for at most 4 min)
+        for (let i = 0; i < 16; i++) {
           setTimeout(() => {
             fetch(apiUrl).then(response => response.json())
             .then(data => {
               // the get requset failed
               if (data.statusCode == 400) {
                 // TODO: showcase some book keeping
+                setTextBox(numberOfGET.toString()+" GET requests so far.")
               } else {
                 // parse the result image
                 var imageBytesData = JSON.parse(data.body)["result_img"]
@@ -98,7 +102,11 @@ function App() {
               }
             })
           }, 15000); // execute get request every 15 seconds
-        } // end while
+          if (resultReceived) {
+            break
+          }
+          numberOfGET ++;
+        }
       }
 
       // re-enable submit button
