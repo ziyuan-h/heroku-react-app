@@ -20,6 +20,8 @@ function App() {
 
   // my modification
   const [initialMoney, setInitialMoney] = React.useState('1000');
+  const [timeRange, setTimeRange] = React.useState('year')
+  const [company, setCompany] = React.useState('goog')
 
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
@@ -104,18 +106,56 @@ function App() {
   // handle initial money input
   const inputInitialMoney = async (event) => {
     // retrive input initial money value
-    setInitialMoney(event.target.value)
+    setInitialMoney(event.target.value);
   }
 
+  const inputTimeRange = async (event) => {  
+    var list = document.getElementById("selectTimeRange");  
+    setTimeRange(list.options[list.selectedIndex].text);  
+  } 
+
+  const inputCompany = async (event) => {
+    var list = document.getElementById("selectCompany"); 
+    const companyName = list.options[list.selectedIndex].text;
+    if (companyName == "Google") {
+      setCompany("goog");
+    } else {
+      setCompany("goog");
+    }
+  }
+
+  const handleSubmitDebug = (event) => {
+    event.preventDefault();
+
+    debugMessage = initialMoney + ' ' + timeRange + ' ' + company;
+    setTextBox(debugMessage);
+  }
+  
   return (
     <div className="App">
       <div className="Input">
         <h1>Input</h1>
         <form onSubmit={handleSubmit}>
           <div>
+            <b> Select time range from the list</b>  
+            <select id="selectTimeRange" onchange={inputTimeRange} >  
+              <option> ---Choose Time Range--- </option>  
+              <option> year </option>  
+              <option> month </option>  
+              <option> week </option>   
+            </select>
+          </div>
+          <div>
+            <b> Select company from the list</b>  
+              <select id="selectCompany" onchange={inputCompany} >  
+                <option> ---Choose Company--- </option>  
+                <option> Google </option>  
+              </select>
+            </div>
+          <div>
             <label for="initial_money">Initial money to invest (from 1000 to 1e6): </label>
             <input id="initial_money" type="number" name="initial_money" min="1000" max="1000000" step="100" required
-                placeholder="e.g. 1000" />
+                placeholder="e.g. 1000" onchange={inputInitialMoney} />
             <span class="validity"></span>
           </div>
           <div>
