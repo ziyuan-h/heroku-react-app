@@ -18,6 +18,12 @@ function App() {
   const [buttonDisable, setButtonDisable] = React.useState(true);
   const [buttonText, setButtonText] = React.useState('Submit');
 
+  // my modification
+  const [initialMoney, setInitialMoney] = React.useState(1000);
+
+  // debug use
+  const [textBox, setTextBox] = React.useState("debug");
+
   // convert file to bytes data
   const convertFileToBytes = (inputFile) => {
     console.log('converting file to bytes...');
@@ -65,7 +71,7 @@ function App() {
 
     // make POST request
     console.log('making POST request...');
-    fetch('https://meplylqvoe.execute-api.us-east-1.amazonaws.com/prod/', {
+    fetch('<api-url>', {
       method: 'POST',
       headers: { "Content-Type": "application/json", "Accept": "text/plain" },
       body: JSON.stringify({ "image": inputFileData })
@@ -100,13 +106,24 @@ function App() {
       <div className="Input">
         <h1>Input</h1>
         <form onSubmit={handleSubmit}>
-          <input type="file" accept=".png" onChange={handleChange} />
+          <label for="initial_money">Initial money to invest (from 1000 to 1e6): </label>
+          <input id="initial_money" type="number" value={initialMoney} 
+              min="1000" max="1000000" step="100" required
+              placeholder="Float between 1e3 and 1e6" 
+              onChange={setInitialMoney}/>
+          <span class="validity"></span>
+          {/* <input type="file" accept=".png" onChange={handleChange} /> */}
           <button type="submit" disabled={buttonDisable}>{buttonText}</button>
         </form>
       </div>
       <div className="Output">
         <h1>Results</h1>
         <p>{outputFileData}</p>
+      </div>
+      <div className="Debug_Report">
+        <b>
+          {textBox}
+        </b>
       </div>
     </div>
   );
