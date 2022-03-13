@@ -76,6 +76,9 @@ function App() {
         // retrive the results from response
         var imageBytesData = data.body.result_img;
         var textData = data.body.result_txt;
+        console.log(data.body)
+        console.log(imageBytesData)
+        console.log(textData)
 
         // parse the result image
         parseResultImage(imageBytesData);
@@ -98,6 +101,10 @@ function App() {
       resultReceived = await handleHttpGETRequest(resultReceived);
       if (resultReceived) {
         console.log("GET result received!");
+
+        // re-enable submit button
+        setButtonDisable(false);
+        setButtonText('Submit');
         break;
       }
     }
@@ -186,7 +193,9 @@ function App() {
       </div>
       <div className="Output">
         <h1>Results</h1>
-        <p>{outputConsole}</p>
+        <p>
+          {outputConsole}
+        </p>
       </div>
       <div className="Debug_Report">
         <p>
