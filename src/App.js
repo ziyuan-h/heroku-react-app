@@ -121,6 +121,11 @@ function App() {
   //   })
   // }
 
+  // sleep function
+  const sleep = ms => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   // handle initial money input
   const inputInitialMoney = async (event) => {
     setInitialMoney(event.target.value);
@@ -172,13 +177,19 @@ function App() {
               if (data.statusCode == 400) {
                 // TODO: showcase some book keeping
               } else {
+                // parse the result image
                 var imageBytesData = JSON.parse(data.body)["result_img"]
+
+
+                // parse the result type
                 var textData = JSON.parse(data.body)["result_txt"]
                 setTextBox(textData["buy"])
+
                 // end the while loop
                 resultReceived = true;
               }
             })
+          await sleep(10000); // sleep every 10 seconds
         } // end while
       }
 
@@ -198,7 +209,7 @@ function App() {
         <form onSubmit={handleSubmitDebug}>
           <div>
           <label htmlFor="selectTimeRange">Select time range from the list: </label>  
-            <select id="selectTimeRange" onchange={inputTimeRange} required >  
+            <select id="selectTimeRange" onChange={inputTimeRange} required >  
               <option value="year"> year </option>  
               <option value="month"> month </option>  
               <option value="week"> week </option>   
@@ -207,7 +218,7 @@ function App() {
           </div>
           <div>
               <label htmlFor="selectCompany">Select company from the list: </label>  
-              <select id="selectCompany" onchange={inputCompany} required>  
+              <select id="selectCompany" onChange={inputCompany} required>  
                 <option value="goog"> Google </option>  
               </select>
               <span className="validity"></span>
@@ -215,7 +226,7 @@ function App() {
           <div>
             <label htmlFor="initial_money">Initial money to invest (from 1000 to 1e6): </label>
             <input id="initial_money" type="number" name="initial_money" min="1000" max="1000000" step="100" required
-                placeholder="e.g. 1000" onchange={inputInitialMoney} />
+                placeholder="e.g. 1000" onChange={inputInitialMoney} />
             <span className="validity"></span>
           </div>
           <div>
