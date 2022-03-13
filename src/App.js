@@ -105,7 +105,6 @@ function App() {
 
   // handle initial money input
   const inputInitialMoney = async (event) => {
-    // retrive input initial money value
     setInitialMoney(event.target.value);
   }
 
@@ -120,7 +119,7 @@ function App() {
   }
 
   const handleSubmitDebug = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     const debugMessage = initialMoney + ' ' + timeRange + ' ' + company;
     setTextBox(debugMessage);
@@ -132,26 +131,26 @@ function App() {
         <h1>Input</h1>
         <form onSubmit={handleSubmitDebug}>
           <div>
-          <label for="selectTimeRange">Select time range from the list: </label>  
-            <select id="selectTimeRange" onChange={inputTimeRange} required >  
+          <label htmlFor="selectTimeRange">Select time range from the list: </label>  
+            <select id="selectTimeRange" onchange={inputTimeRange} required >  
               <option value="year"> year </option>  
               <option value="month"> month </option>  
               <option value="week"> week </option>   
             </select>
-            <span class="validity"></span>
+            <span className="validity"></span>
           </div>
           <div>
-              <label for="selectCompany">Select company from the list: </label>  
-              <select id="selectCompany" onChange={inputCompany} required>  
+              <label htmlFor="selectCompany">Select company from the list: </label>  
+              <select id="selectCompany" onchange={inputCompany} required>  
                 <option value="goog"> Google </option>  
               </select>
-              <span class="validity"></span>
+              <span className="validity"></span>
             </div>
           <div>
-            <label for="initial_money">Initial money to invest (from 1000 to 1e6): </label>
+            <label htmlFor="initial_money">Initial money to invest (from 1000 to 1e6): </label>
             <input id="initial_money" type="number" name="initial_money" min="1000" max="1000000" step="100" required
-                placeholder="e.g. 1000" onChange={inputInitialMoney} />
-            <span class="validity"></span>
+                placeholder="e.g. 1000" onchange={inputInitialMoney} />
+            <span className="validity"></span>
           </div>
           <div>
             <button type="submit" disabled={buttonDisable}>{buttonText}</button>
