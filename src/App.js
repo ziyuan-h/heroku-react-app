@@ -139,6 +139,10 @@ function App() {
   const handleSubmitDebug = async (event) => {
     event.preventDefault();
 
+    // update debug message
+    const debugMessage = timeRange+','+company+','+initialMoney;
+    setTextBox(debugMessage);
+
     // temporarily disable the submit button
     setButtonDisable(true);
     setButtonText('Loading Result');
