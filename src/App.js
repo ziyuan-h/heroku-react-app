@@ -23,7 +23,7 @@ function App() {
   const [timeRange, setTimeRange] = React.useState('year');
   const [company, setCompany] = React.useState('goog');
   // output console
-  const [outputImg, setOutputImg] = React.useState("data:image/jpg;base64,")
+  const [outputImg, setOutputImg] = React.useState("digit.png")
   const [outputConsole, setOutputConsole] = React.useState("output");
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
@@ -208,7 +208,7 @@ function App() {
         </p>
       </div>
       <div>
-        <img id="Image" src={outputImg} />
+        <img id="Image" src={outputImg} alt="result figure"/>
       </div>
     </div>
   );
