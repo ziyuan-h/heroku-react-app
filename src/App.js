@@ -56,7 +56,7 @@ function App() {
   // parse image result
   const parseResultImage = (resultImgBytes) => {
     // document.getElementById("ItemPreview").src = "data:image/jpg;base64," + btoa(encodeURI(resultImgBytes));
-    setOutputImg("data:image/jpeg;charset=utf-8;base64," + btoa(encodeURI(resultImgBytes)))
+    setOutputImg("data:image/jpeg;charset=utf-8;base64," + encodeURI(resultImgBytes))
   }
 
   // asynchronous function to handle http GET request to api url
@@ -208,7 +208,7 @@ function App() {
         </p>
       </div>
       <div>
-        <img id="Image" src={outputImg} alt="result figure"/>
+        <img id="Image" src={outputImg} alt="result figure" hidden={} />
       </div>
     </div>
   );
