@@ -29,6 +29,9 @@ function App() {
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
 
+  let resultReceived = true; // GET request flag
+  setInterval(handleHttpGETRequest(resultReceived), 15000);
+
   // handle initial money input
   const inputInitialMoney = async (event) => {
     setInitialMoney(event.target.value);
@@ -59,14 +62,8 @@ function App() {
   // asynchronous function to handle http GET request to api url
   // accept "resultRecieved", returns the same promise
   const handleHttpGETRequest = async (resultReceived) => {
-    if (resultReceived) {
-      // re-enable submit button
-      setButtonDisable(false);
-      setButtonText('Submit');
-    } 
-    
-    else {
-      setTimeout(() => {console.log("timeout in 15 seconds")}, 15000); // wait for every 15 seconds
+    if (!resultReceived) {
+      // setTimeout(() => {console.log("timeout in 15 seconds")}, 15000); // wait for every 15 seconds
 
       const response = await fetch(apiUrl);
       const data = await response.json();
@@ -88,27 +85,32 @@ function App() {
 
         // end the while loop
         resultReceived = true;
-      }
-    }
 
-    return resultReceived;
-  }
-
-  // create a chain of GET requests
-  const createChainOfGETs = async (num, resultReceived) => {
-    for (let i = 0; i < num; i++) {
-      setOutputConsole(i.toString()+" GET requests created.");
-      resultReceived = await handleHttpGETRequest(resultReceived);
-      if (resultReceived) {
         console.log("GET result received!");
-
-        // re-enable submit button
         setButtonDisable(false);
         setButtonText('Submit');
-        break;
       }
     }
   }
+
+  // // create a chain of GET requests
+  // const createChainOfGETs = async (num, resultReceived) => {
+  //   setInterval(handleHttpGETRequest(resultReceived), 15000);
+
+
+  //   for (let i = 0; i < num; i++) {
+  //     setOutputConsole(i.toString()+" GET requests created.");
+  //     resultReceived = await handleHttpGETRequest(resultReceived);
+  //     if (resultReceived) {
+  //       console.log("GET result received!");
+
+  //       // re-enable submit button
+  //       setButtonDisable(false);
+  //       setButtonText('Submit');
+  //       break;
+  //     }
+  //   }
+  // }
 
   // handle submit
   const handleSubmitDebug = (event) => {
@@ -150,11 +152,9 @@ function App() {
         setOutputConsole("Input submitted successfully.\n Waiting for training results......")
 
         // start submitting GET requests and wait for the results to be downloaded
-        let resultReceived = false;
-
         // as most as 240 GET requests (wait for at most 4 min)
-        createChainOfGETs(50, resultReceived);
-
+        // createChainOfGETs(50, resultReceived);
+        resultReceived = false;
       }
     })
   }
