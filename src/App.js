@@ -208,7 +208,7 @@ function App() {
         </p>
       </div>
       <div>
-        <img id="Image" src={outputImg} alt="result figure" hidden={} />
+        <img id="Image" src={outputImg} alt="result figure" />
       </div>
     </div>
   );
