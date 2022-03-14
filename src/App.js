@@ -23,6 +23,7 @@ function App() {
   const [timeRange, setTimeRange] = React.useState('year');
   const [company, setCompany] = React.useState('goog');
   // output console
+  const [outputImg, setOutputImg] = React.useState("data:image/jpg;base64,")
   const [outputConsole, setOutputConsole] = React.useState("output");
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
@@ -54,7 +55,8 @@ function App() {
 
   // parse image result
   const parseResultImage = (resultImgBytes) => {
-    document.getElementById("ItemPreview").src = "data:image/jpg;base64," + btoa(encodeURI(resultImgBytes));
+    // document.getElementById("ItemPreview").src = "data:image/jpg;base64," + btoa(encodeURI(resultImgBytes));
+    setOutputImg("data:image/jpg;base64," + btoa(encodeURI(resultImgBytes)))
   }
 
   // asynchronous function to handle http GET request to api url
@@ -206,7 +208,7 @@ function App() {
         </p>
       </div>
       <div>
-        <img id="Image" src="" />
+        <img id="Image" src={outputImg} />
       </div>
     </div>
   );
