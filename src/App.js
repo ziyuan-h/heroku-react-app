@@ -28,6 +28,9 @@ function App() {
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
 
+  // initial setup, hide the image
+  document.getElementById("Image").style.display = "none";
+
   // sleep helper
   const sleepHelper = ms => new Promise(r => setTimeout(r, ms));
 
@@ -56,6 +59,7 @@ function App() {
   // parse image result
   const parseResultImage = (resultImgBytes) => {
     // document.getElementById("ItemPreview").src = "data:image/jpg;base64," + btoa(encodeURI(resultImgBytes));
+    document.getElementById("Image").style.display = "block";
     setOutputImg("data:image/jpeg;charset=utf-8;base64," + encodeURI(resultImgBytes))
   }
 
@@ -118,6 +122,9 @@ function App() {
   // handle submit
   const handleSubmitDebug = (event) => {
     event.preventDefault();
+
+    // hide old result
+    document.getElementById("Image").style.display = "none";
 
     // update debug message
     const debugMessage = timeRange+','+company+','+initialMoney;
