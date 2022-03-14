@@ -69,6 +69,7 @@ function App() {
     else {
       // setTimeout(() => {console.log("timeout in 15 seconds")}, 15000); // wait for every 15 seconds
       await sleepHelper(15000); // wait for every 15 seconds
+      console.log("timeout in 15 seconds");
 
       const response = await fetch(apiUrl);
       const data = await response.json();
