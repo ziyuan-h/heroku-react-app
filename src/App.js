@@ -54,7 +54,7 @@ function App() {
 
   // parse image result
   const parseResultImage = (resultImgBytes) => {
-
+    document.getElementById("ItemPreview").src = "data:image/jpg;base64," + btoa(encodeURI(resultImgBytes));
   }
 
   // asynchronous function to handle http GET request to api url
@@ -204,6 +204,9 @@ function App() {
         <p>
           {textBox}
         </p>
+      </div>
+      <div>
+        <img id="Image" src="" />
       </div>
     </div>
   );
