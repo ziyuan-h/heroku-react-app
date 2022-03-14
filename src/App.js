@@ -29,8 +29,7 @@ function App() {
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
 
-  let resultReceived = true; // GET request flag
-  setInterval(handleHttpGETRequest(resultReceived), 15000);
+
 
   // handle initial money input
   const inputInitialMoney = async (event) => {
@@ -92,6 +91,9 @@ function App() {
       }
     }
   }
+
+  let resultReceived = true; // GET request flag
+  setInterval(handleHttpGETRequest(resultReceived), 15000);
 
   // // create a chain of GET requests
   // const createChainOfGETs = async (num, resultReceived) => {
