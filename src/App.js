@@ -23,7 +23,7 @@ function App() {
   const [timeRange, setTimeRange] = React.useState('year');
   const [company, setCompany] = React.useState('goog');
   // output console
-  const [outputImg, setOutputImg] = React.useState("digit.png")
+  const [outputImg, setOutputImg] = React.useState("%PUBLIC_URL%/digit.png")
   const [outputConsole, setOutputConsole] = React.useState("output");
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
