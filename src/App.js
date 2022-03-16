@@ -241,9 +241,9 @@ function App() {
                 <span className="validity"></span>
               </div>
 
-            <div>
+            <div class="cont">  
 
-<button type="submit" disabled={buttonDisable}><span>{buttonText}</span><img src="https://i.cloudup.com/2ZAX3hVsBE-3000x3000.png" height="62" width="62" /></button>
+<button class="btn" type="submit" disabled={buttonDisable}><span>{buttonText}</span><img src="https://i.cloudup.com/2ZAX3hVsBE-3000x3000.png" height="62" width="62" /></button>
             </div>
           </form>
     
