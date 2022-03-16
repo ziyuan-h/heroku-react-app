@@ -62,7 +62,7 @@ function App() {
 
   // parse txt result
   const parseResultText = (resultTextJson) => {
-    let outputBuyIn = "<b>Agent buys in on: </b><br/>";
+    let outputBuyIn = "Agent buys in on: \n".bold();
     let buyArray = resultTextJson["buy"];
     let sellArray = resultTextJson["sell"];
     for (let i = 0; i < buyArray.length; i++) {
@@ -70,16 +70,16 @@ function App() {
       if (i < buyArray.length - 1) {
         outputBuyIn += ', ';
       } else {
-        outputBuyIn += '.<br/>';
+        outputBuyIn += '.\n';
       }
     }
-    outputBuyIn += "<b>Agent sells out on: </b><br/>";
+    outputBuyIn += "Agent sells out on: \n".bold();
     for (let i = 0; i < sellArray.length; i++) {
       outputBuyIn += dateConverter(sellArray[i]);
       if (i < sellArray.length - 1) {
         outputBuyIn += ', ';
       } else {
-        outputBuyIn += '.<br/>';
+        outputBuyIn += '.\n';
       }
     }
     setTextBox(outputBuyIn);
