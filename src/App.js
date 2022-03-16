@@ -205,8 +205,8 @@ function App() {
   
   return (
     <div className="App">
+    <div className="parent">
       <h1 className="child">Double Q learning based stock executor agent</h1>
-      <div className="parent">
         <div className="Input">
           <div className="child">
             <h2>Input</h2>
