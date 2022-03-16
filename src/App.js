@@ -26,6 +26,8 @@ function App() {
   const [outputImg, setOutputImg] = React.useState("/images/digit.png")
   const [hiddenImg, setHiddenImg] = React.useState(true);
   const [outputConsole, setOutputConsole] = React.useState("output");
+  const [buyOutput, setBuyOutput] = React.useState("");
+  const [sellOutput, setSellOutput] = React.useState("");
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
 
@@ -62,7 +64,7 @@ function App() {
 
   // parse txt result
   const parseResultText = (resultTextJson) => {
-    let outputBuyIn = "Agent buys in on: {\n}";
+    let outputBuyIn = "";
     let buyArray = resultTextJson["buy"];
     let sellArray = resultTextJson["sell"];
     for (let i = 0; i < buyArray.length; i++) {
@@ -70,19 +72,20 @@ function App() {
       if (i < buyArray.length - 1) {
         outputBuyIn += ', ';
       } else {
-        outputBuyIn += '.{\n}';
+        outputBuyIn += '.';
       }
     }
-    outputBuyIn += "Agent sells out on: {\n}";
+    setBuyOutput(outputBuyIn);
+    outputBuyIn = "";
     for (let i = 0; i < sellArray.length; i++) {
       outputBuyIn += dateConverter(sellArray[i]);
       if (i < sellArray.length - 1) {
         outputBuyIn += ', ';
       } else {
-        outputBuyIn += '.{\n}';
+        outputBuyIn += '.';
       }
     }
-    setTextBox(outputBuyIn);
+    setSellOutput(outputBuyIn);
   }
 
   // parse image result
@@ -243,9 +246,10 @@ function App() {
           {outputConsole}
         </p>
       </div>
-      <div className="Debug_Report">
+      <div className="TextOutput" hidden={hiddenImg}>
         <p>
-          {textBox}
+          <b>Agent buys in on dates: </b><br/>{buyOutput}<br/>
+          <b>Agent sells out on dates: </b><br/>{sellOutput}<br/>
         </p>
       </div>
       <div>
