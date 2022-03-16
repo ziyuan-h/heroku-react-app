@@ -52,3 +52,17 @@ input:valid+span:after {
     flex-direction: column;
     justify-content: space-between;
 }
+.parent {
+    width:100px;
+    height:100px;
+}
+
+.child {
+    width:100%;
+    height: auto;
+    padding-bottom: 25%;
+    background: grey;
+}
+
+h1 { font-family: Papyrus; font-size: 35px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 38.5px; } h3 { font-family: Papyrus, fantasy; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } p { font-family: Papyrus, fantasy; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } blockquote { font-family: Papyrus, fantasy; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: Papyrus, fantasy; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
+
