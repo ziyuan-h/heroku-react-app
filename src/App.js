@@ -205,24 +205,25 @@ function App() {
   
   return (
     <div className="App">
-        <h1 className="child">Double Q learning based stock executor agent</h1>
-        <div className="parent">
+      <h1 className="child">Double Q learning based stock executor agent</h1>
+      <div className="parent">
         <div className="Input">
           <div className="child">
-          <h2>Input</h2>
+            <h2>Input</h2>
           </div>
-          <div className="child">
+          
           <form onSubmit={handleSubmitDebug}>
-            <div>
-            <label htmlFor="selectTimeRange">Select time range from the list: </label>  
-              <select id="selectTimeRange" onChange={inputTimeRange} required >  
-                <option value="year"> year </option>  
-                <option value="month"> month </option>  
-                <option value="week"> week </option>   
-              </select>
-              <span className="validity"></span>
-            </div>
-            <div>
+            <div className="child">
+              <div>
+                <label htmlFor="selectTimeRange">Select time range from the list: </label>  
+                <select id="selectTimeRange" onChange={inputTimeRange} required >  
+                  <option value="year"> year </option>  
+                  <option value="month"> month </option>  
+                  <option value="week"> week </option>   
+                </select>
+                <span className="validity"></span>
+              </div>
+              <div>
                 <label htmlFor="selectCompany">Select company from the list: </label>  
                 <select id="selectCompany" onChange={inputCompany} required>  
                   <option value="goog"> Google </option>
@@ -233,12 +234,12 @@ function App() {
                 </select>
                 <span className="validity"></span>
               </div>
-            <div>
-              <label htmlFor="initial_money">Initial money to invest (from 1000 to 1e6): </label>
-              <input id="initial_money" type="number" name="initial_money" min="1000" max="1000000" step="100" required
-                  placeholder="e.g. 1000" onChange={inputInitialMoney} />
-              <span className="validity"></span>
-            </div>
+              <div>
+                <label htmlFor="initial_money">Initial money to invest (from 1000 to 1e6): </label>
+                <input id="initial_money" type="number" name="initial_money" min="1000" max="1000000" step="100" required
+                    placeholder="e.g. 1000" onChange={inputInitialMoney} />
+                <span className="validity"></span>
+              </div>
             </div>
             <div className="child">
               <button type="submit" disabled={buttonDisable}>{buttonText}</button>
