@@ -189,7 +189,11 @@ function App() {
           <div>
               <label htmlFor="selectCompany">Select company from the list: </label>  
               <select id="selectCompany" onChange={inputCompany} required>  
-                <option value="goog"> Google </option>  
+                <option value="goog"> Google </option>
+                <option value="txg"> 10x Genomics </option>
+                <option value="amba"> Ambarella </option>
+                <option value="amzn"> Amazon </option>
+                <option value="aapl"> Apple </option>
               </select>
               <span className="validity"></span>
             </div>
