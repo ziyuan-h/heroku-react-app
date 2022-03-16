@@ -239,12 +239,12 @@ function App() {
       </div>
       <div className="Output">
         <h2>Results</h2>
-        <p style="color:black">
+        <p>
           {outputConsole}
         </p>
       </div>
       <div className="Debug_Report">
-        <p style="color:green">
+        <p>
           {textBox}
         </p>
       </div>
