@@ -204,58 +204,69 @@ function App() {
   }
   
   return (
-    <div className="App"><div className="page-break">
-      <h1>Double Q learning based stock executor agent</h1>
-      <div className="Input">
-        <h2>Input</h2>
-        <form onSubmit={handleSubmitDebug}>
-          <div>
-          <label htmlFor="selectTimeRange">Select time range from the list: </label>  
-            <select id="selectTimeRange" onChange={inputTimeRange} required >  
-              <option value="year"> year </option>  
-              <option value="month"> month </option>  
-              <option value="week"> week </option>   
-            </select>
-            <span className="validity"></span>
+    <div className="App">
+        <h1 className="child">Double Q learning based stock executor agent</h1>
+        <div className="parent">
+        <div className="Input">
+          <div className="child">
+          <h2>Input</h2>
           </div>
-          <div>
-              <label htmlFor="selectCompany">Select company from the list: </label>  
-              <select id="selectCompany" onChange={inputCompany} required>  
-                <option value="goog"> Google </option>
-                <option value="txg"> 10x Genomics </option>
-                <option value="amba"> Ambarella </option>
-                <option value="amzn"> Amazon </option>
-                <option value="aapl"> Apple </option>
+          <div className="child">
+          <form onSubmit={handleSubmitDebug}>
+            <div>
+            <label htmlFor="selectTimeRange">Select time range from the list: </label>  
+              <select id="selectTimeRange" onChange={inputTimeRange} required >  
+                <option value="year"> year </option>  
+                <option value="month"> month </option>  
+                <option value="week"> week </option>   
               </select>
               <span className="validity"></span>
             </div>
-          <div>
-            <label htmlFor="initial_money">Initial money to invest (from 1000 to 1e6): </label>
-            <input id="initial_money" type="number" name="initial_money" min="1000" max="1000000" step="100" required
-                placeholder="e.g. 1000" onChange={inputInitialMoney} />
-            <span className="validity"></span>
+            <div>
+                <label htmlFor="selectCompany">Select company from the list: </label>  
+                <select id="selectCompany" onChange={inputCompany} required>  
+                  <option value="goog"> Google </option>
+                  <option value="txg"> 10x Genomics </option>
+                  <option value="amba"> Ambarella </option>
+                  <option value="amzn"> Amazon </option>
+                  <option value="aapl"> Apple </option>
+                </select>
+                <span className="validity"></span>
+              </div>
+            <div>
+              <label htmlFor="initial_money">Initial money to invest (from 1000 to 1e6): </label>
+              <input id="initial_money" type="number" name="initial_money" min="1000" max="1000000" step="100" required
+                  placeholder="e.g. 1000" onChange={inputInitialMoney} />
+              <span className="validity"></span>
+            </div>
+            </div>
+            <div className="child">
+              <button type="submit" disabled={buttonDisable}>{buttonText}</button>
+            </div>
+
+          </form>
+        </div>
+        <div className="Output">
+          <h2 className="child">Results</h2>
+          <div className="child">
+          <p>
+            {outputConsole}
+          </p>
           </div>
-          <div>
-            <button type="submit" disabled={buttonDisable}>{buttonText}</button>
+        </div>
+        <div className="TextOutput" hidden={hiddenImg}>
+          <div className="child">
+          <p>
+            <b>Agent buys in on dates: </b><br/>{buyOutput}<br/><br/>
+            <b>Agent sells out on dates: </b><br/>{sellOutput}<br/><br/>
+          </p>
           </div>
-        </form>
+        </div>
+        <div className="child">
+          <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
+        </div>
       </div>
-      <div className="Output">
-        <h2>Results</h2>
-        <p>
-          {outputConsole}
-        </p>
-      </div>
-      <div className="TextOutput" hidden={hiddenImg}>
-        <p>
-          <b>Agent buys in on dates: </b><br/>{buyOutput}<br/><br/>
-          <b>Agent sells out on dates: </b><br/>{sellOutput}<br/><br/>
-        </p>
-      </div>
-      <div>
-        <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
-      </div>
-    </div></div>
+    </div>
   );
 }
 
