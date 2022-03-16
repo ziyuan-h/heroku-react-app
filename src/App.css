@@ -46,3 +46,9 @@ input:valid+span:after {
   content: '✓';
   padding-left: 5px;
 }
+
+.page-break {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
