@@ -53,8 +53,8 @@ input:valid+span:after {
     justify-content: space-between;
 }
 .parent {
-    width:100px;
-    height:100px;
+    width:90%;
+    height:90%;
 }
 
 .child {
