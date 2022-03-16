@@ -248,8 +248,8 @@ function App() {
       </div>
       <div className="TextOutput" hidden={hiddenImg}>
         <p>
-          <b>Agent buys in on dates: </b><br/>{buyOutput}<br/>
-          <b>Agent sells out on dates: </b><br/>{sellOutput}<br/>
+          <b>Agent buys in on dates: </b><br/>{buyOutput}<br/><br/>
+          <b>Agent sells out on dates: </b><br/>{sellOutput}<br/><br/>
         </p>
       </div>
       <div>
