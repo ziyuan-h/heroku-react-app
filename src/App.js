@@ -205,15 +205,9 @@ function App() {
   
   return (
     <div className="App">
-    <div className="parent">
-      <h1 className="child">Double Q learning based stock executor agent</h1>
-        <div className="Input">
-          <div className="child">
-            <h2>Input</h2>
-          </div>
-          
-          <form onSubmit={handleSubmitDebug}>
-            <div className="child">
+    <textarea resize>Resize me for some magic! ✨
+                <h2>Input</h2>
+    
               <div>
                 <label htmlFor="selectTimeRange">Select time range from the list: </label>  
                 <select id="selectTimeRange" onChange={inputTimeRange} required >  
@@ -223,6 +217,8 @@ function App() {
                 </select>
                 <span className="validity"></span>
               </div>
+
+
               <div>
                 <label htmlFor="selectCompany">Select company from the list: </label>  
                 <select id="selectCompany" onChange={inputCompany} required>  
@@ -234,40 +230,48 @@ function App() {
                 </select>
                 <span className="validity"></span>
               </div>
+
+
+
+          <form onSubmit={handleSubmitDebug}>
               <div>
                 <label htmlFor="initial_money">Initial money to invest (from 1000 to 1e6): </label>
                 <input id="initial_money" type="number" name="initial_money" min="1000" max="1000000" step="100" required
                     placeholder="e.g. 1000" onChange={inputInitialMoney} />
                 <span className="validity"></span>
               </div>
-            </div>
-            <div className="child">
+
+            <div>
               <button type="submit" disabled={buttonDisable}>{buttonText}</button>
             </div>
-
           </form>
-        </div>
-        <div className="Output">
-          <h2 className="child">Results</h2>
-          <div className="child">
+    
+    </textarea>
+
+
+
+
+
+
+<h2>Results</h2>
+
+
           <p>
             {outputConsole}
           </p>
-          </div>
-        </div>
-        <div className="TextOutput" hidden={hiddenImg}>
-          <div className="child">
+<div className="TextOutput" hidden={hiddenImg}>
+<div>
           <p>
             <b>Agent buys in on dates: </b><br/>{buyOutput}<br/><br/>
             <b>Agent sells out on dates: </b><br/>{sellOutput}<br/><br/>
           </p>
           </div>
-        </div>
         <div className="child">
           <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
         </div>
-      </div>
+    
     </div>
+    
   );
 }
 
