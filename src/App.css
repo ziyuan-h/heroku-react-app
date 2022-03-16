@@ -42,8 +42,9 @@ body{
   place-items: center;
   height: 100vh;
   overflow: hidden;
- background-image: url("https://media.istockphoto.com/photos/macro-view-of-a-screen-of-trading-terminal-with-abstract-financial-picture-id1200938039");
+ background-image: url("https://mediacloud.kiplinger.com/image/private/s--Th3nJzII--/f_auto,t_primary-image-desktop@1/v1621366718/Investing/stock-market-today-051821.jpg");
  background-color: #cccccc;
+  background-size: cover;
 }
 
 input:invalid+span:after {
