@@ -24,12 +24,13 @@ function App() {
   const [company, setCompany] = React.useState('goog');
   // output console
   const [outputImg, setOutputImg] = React.useState("/images/digit.png")
+  const [hiddenImg, setHiddenImg] = React.useState(true);
   const [outputConsole, setOutputConsole] = React.useState("output");
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
 
-  // initial setup, hide the image
-  document.getElementById("Image").style.display = "none";
+//   // initial setup, hide the image
+//   document.getElementById("Image").style.display = "none";
 
   // sleep helper
   const sleepHelper = ms => new Promise(r => setTimeout(r, ms));
@@ -59,7 +60,7 @@ function App() {
   // parse image result
   const parseResultImage = (resultImgBytes) => {
     // document.getElementById("ItemPreview").src = "data:image/jpg;base64," + btoa(encodeURI(resultImgBytes));
-    document.getElementById("Image").style.display = "block";
+    setHiddenImg(false);
     setOutputImg("data:image/jpeg;charset=utf-8;base64," + encodeURI(resultImgBytes))
   }
 
@@ -124,7 +125,7 @@ function App() {
     event.preventDefault();
 
     // hide old result
-    document.getElementById("Image").style.display = "none";
+    setHiddenImg(true);
 
     // update debug message
     const debugMessage = timeRange+','+company+','+initialMoney;
@@ -215,7 +216,7 @@ function App() {
         </p>
       </div>
       <div>
-        <img id="Image" src={outputImg} alt="result figure" hidden={} />
+        <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
       </div>
     </div>
   );
