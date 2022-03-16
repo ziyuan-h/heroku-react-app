@@ -205,7 +205,7 @@ function App() {
   
   return (
     <div className="App">
-    <textarea resize>Resize me for some magic! ✨
+    <textarea >Resize me for some magic! ✨
                 <h2>Input</h2>
     
               <div>
