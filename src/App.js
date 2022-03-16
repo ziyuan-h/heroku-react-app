@@ -34,6 +34,14 @@ function App() {
 
   // sleep helper
   const sleepHelper = ms => new Promise(r => setTimeout(r, ms));
+  
+  // date convert helper
+  const dateConverter = (numDaysBefore) => {
+      let today = new Date();
+      let pastDate = new Date(today.setDate(today.getDate() + numDaysBefore));
+      let strPastDate = pastDate.getFullYear() + '-' + ('0' + (pastDate.getMonth()+1)).slice(-2) + '-' + ('0' + pastDate.getDate()).slice(-2);
+      return strPastDate;
+  }
 
   // handle initial money input
   const inputInitialMoney = async (event) => {
@@ -54,7 +62,27 @@ function App() {
 
   // parse txt result
   const parseResultText = (resultTextJson) => {
-    setTextBox(resultTextJson["buy"]);
+    let outputBuyIn = "<b>Agent buys in on: </b><br/>";
+    let buyArray = resultTextJson["buy"];
+    let sellArray = resultTextJson["sell"];
+    for (let i = 0; i < buyArray.length; i++) {
+      outputBuyIn += dateConverter(buyArray[i]);
+      if (i < buyArray.length - 1) {
+        outputBuyIn += ', ';
+      } else {
+        outputBuyIn += '.<br/>';
+      }
+    }
+    outputBuyIn += "<b>Agent sells out on: </b><br/>";
+    for (let i = 0; i < sellArray.length; i++) {
+      outputBuyIn += dateConverter(sellArray[i]);
+      if (i < sellArray.length - 1) {
+        outputBuyIn += ', ';
+      } else {
+        outputBuyIn += '.<br/>';
+      }
+    }
+    setTextBox(outputBuyIn);
   }
 
   // parse image result
@@ -174,8 +202,9 @@ function App() {
   
   return (
     <div className="App">
+      <h1>Double Q learning based stock executor agent</h1>
       <div className="Input">
-        <h1>Input</h1>
+        <h2>Input</h2>
         <form onSubmit={handleSubmitDebug}>
           <div>
           <label htmlFor="selectTimeRange">Select time range from the list: </label>  
@@ -209,7 +238,7 @@ function App() {
         </form>
       </div>
       <div className="Output">
-        <h1>Results</h1>
+        <h2>Results</h2>
         <p>
           {outputConsole}
         </p>
