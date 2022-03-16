@@ -62,7 +62,7 @@ function App() {
 
   // parse txt result
   const parseResultText = (resultTextJson) => {
-    let outputBuyIn = "Agent buys in on: \n".bold();
+    let outputBuyIn = "Agent buys in on: {\n}";
     let buyArray = resultTextJson["buy"];
     let sellArray = resultTextJson["sell"];
     for (let i = 0; i < buyArray.length; i++) {
@@ -70,16 +70,16 @@ function App() {
       if (i < buyArray.length - 1) {
         outputBuyIn += ', ';
       } else {
-        outputBuyIn += '.\n';
+        outputBuyIn += '.{\n}';
       }
     }
-    outputBuyIn += "Agent sells out on: \n".bold();
+    outputBuyIn += "Agent sells out on: {\n}";
     for (let i = 0; i < sellArray.length; i++) {
       outputBuyIn += dateConverter(sellArray[i]);
       if (i < sellArray.length - 1) {
         outputBuyIn += ', ';
       } else {
-        outputBuyIn += '.\n';
+        outputBuyIn += '.{\n}';
       }
     }
     setTextBox(outputBuyIn);
@@ -239,12 +239,12 @@ function App() {
       </div>
       <div className="Output">
         <h2>Results</h2>
-        <p>
+        <p style="color:black">
           {outputConsole}
         </p>
       </div>
       <div className="Debug_Report">
-        <p>
+        <p style="color:green">
           {textBox}
         </p>
       </div>
