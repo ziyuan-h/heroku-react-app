@@ -44,7 +44,7 @@ body{
   overflow: hidden;
  background-image: url("https://mediacloud.kiplinger.com/image/private/s--Th3nJzII--/f_auto,t_primary-image-desktop@1/v1621366718/Investing/stock-market-today-051821.jpg");
  background-color: #cccccc;
-  background-size: cover;
+  background-size: contain, cover;
 }
 
 input:invalid+span:after {
