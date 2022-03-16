@@ -204,7 +204,7 @@ function App() {
   }
   
   return (
-    <div className="App">
+    <div className="App"><div className="page-break">
       <h1>Double Q learning based stock executor agent</h1>
       <div className="Input">
         <h2>Input</h2>
@@ -255,7 +255,7 @@ function App() {
       <div>
         <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
       </div>
-    </div>
+    </div></div>
   );
 }
 
