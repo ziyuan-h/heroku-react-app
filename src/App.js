@@ -205,6 +205,7 @@ function App() {
   
   return (
     <div className="App">
+    <div id="col-1">
                 <h2>Input</h2>
     
               <div>
@@ -247,13 +248,13 @@ function App() {
             </div>
           </form>
     
-   
+   </div>
 
 
 
 
 
-
+<div id="col-2">
 <h2>Results</h2>
 
 
@@ -274,7 +275,7 @@ function App() {
     
     </div>
 </div>
-    
+</div>    
   );
 }
 
