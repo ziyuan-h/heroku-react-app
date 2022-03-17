@@ -243,7 +243,7 @@ function App() {
 
             <div class="cont">  
 
-<button class="btn" type="submit" disabled={buttonDisable}><span>{buttonText}</span><img src="https://i.cloudup.com/2ZAX3hVsBE-3000x3000.png" height="20" width="20" /></button>
+<button  type="submit" disabled={buttonDisable}><span>{buttonText}</span></button>
             </div>
           </form>
     
