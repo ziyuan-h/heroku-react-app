@@ -37,7 +37,10 @@
   }
 }
 
-body{
+body,html{
+  font-family: Trattatello, fantasy !important;
+  font-size: 1em !important;
+  color: #40E0D0;
   display: grid;
   place-items: center;
   height: 100vh;
