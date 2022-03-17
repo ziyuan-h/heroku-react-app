@@ -240,7 +240,7 @@ function App() {
                 <span className="validity"></span>
               </div>
 
-            <div class="cont">  
+            <div className="cont">  
 
 <button  type="submit" disabled={buttonDisable}><span>{buttonText}</span></button>
 
@@ -266,13 +266,12 @@ function App() {
             <b>Agent buys in on dates: </b><br/>{buyOutput}<br/><br/>
             <b>Agent sells out on dates: </b><br/>{sellOutput}<br/><br/>
           </p>
-  <textarea>
-          
+
+          </div>
+<textarea>
             Agent buys in on dates: {buyOutput}
             Agent sells out on dates:{sellOutput}
-          
 </textarea>
-          </div>
         <div className="child">
           <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
         </div>
