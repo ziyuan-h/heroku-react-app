@@ -263,19 +263,19 @@ function App() {
           </p>
 <div className="TextOutput" hidden={hiddenImg}>
 <div>
-  <div id="col-1>
+  <div  style="width: 50%; float:left">
 <b>Agent buys in on dates: </b><br/>{buyOutput}<br/><br/>
   </div>
 
-  <div id="col-2>
+  <div style="width: 50%; float:right">
 <b>Agent sells out on dates: </b><br/>{sellOutput}<br/><br/>
   </div>
 
   </div>
         <div className="child">
-          <p>
+
           <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
-          </p>
+
         </div>
     
     </div>
