@@ -263,11 +263,15 @@ function App() {
           </p>
 <div className="TextOutput" hidden={hiddenImg}>
 <div>
-  <textarea>
-          <p>
+            <p>
             <b>Agent buys in on dates: </b><br/>{buyOutput}<br/><br/>
             <b>Agent sells out on dates: </b><br/>{sellOutput}<br/><br/>
           </p>
+  <textarea>
+          
+            Agent buys in on dates: {buyOutput}
+            Agent sells out on dates:{sellOutput}
+          
 </textarea>
           </div>
         <div className="child">
