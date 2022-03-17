@@ -268,10 +268,6 @@ function App() {
           </p>
 
           </div>
-<textarea>
-            Agent buys in on dates: {buyOutput}
-            Agent sells out on dates:{sellOutput}
-</textarea>
         <div className="child">
           <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
         </div>
