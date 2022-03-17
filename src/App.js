@@ -263,11 +263,11 @@ function App() {
           </p>
 <div className="TextOutput" hidden={hiddenImg}>
 <div>
-  <div  style="width: 50%; float:left">
+  <div  style={{width: 50%; float:'left'}}>
 <b>Agent buys in on dates: </b><br/>{buyOutput}<br/><br/>
   </div>
 
-  <div style="width: 50%; float:right">
+  <div style={{width: 50%; float:'right'}}>
 <b>Agent sells out on dates: </b><br/>{sellOutput}<br/><br/>
   </div>
 
