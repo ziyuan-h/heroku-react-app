@@ -205,7 +205,7 @@ function App() {
   
   return (
     <div className="App">
-    <textarea >Resize me for some magic! ✨ </textarea>
+    <textarea>Resize me for some magic! ✨ </textarea>
                 <h2>Input</h2>
     
               <div>
@@ -242,9 +242,9 @@ function App() {
               </div>
 
             <div class="cont">  
-<textarea>
+
 <button  type="submit" disabled={buttonDisable}><span>{buttonText}</span></button>
-  </textarea>
+
             </div>
           </form>
     
@@ -263,10 +263,12 @@ function App() {
           </p>
 <div className="TextOutput" hidden={hiddenImg}>
 <div>
+  <textarea>
           <p>
             <b>Agent buys in on dates: </b><br/>{buyOutput}<br/><br/>
             <b>Agent sells out on dates: </b><br/>{sellOutput}<br/><br/>
           </p>
+</textarea>
           </div>
         <div className="child">
           <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
