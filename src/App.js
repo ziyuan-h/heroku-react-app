@@ -205,7 +205,7 @@ function App() {
   
   return (
     <div className="App">
-    <div id="col-1">
+
                 <h2>Input</h2>
     
               <div>
@@ -248,13 +248,13 @@ function App() {
             </div>
           </form>
     
-   </div>
 
 
 
 
 
-<div id="col-2">
+
+
 <h2>Results</h2>
 
 
@@ -263,12 +263,15 @@ function App() {
           </p>
 <div className="TextOutput" hidden={hiddenImg}>
 <div>
-            <p>
-            <b>Agent buys in on dates: </b><br/>{buyOutput}<br/><br/>
-            <b>Agent sells out on dates: </b><br/>{sellOutput}<br/><br/>
-          </p>
+  <div id="col-1>
+<b>Agent buys in on dates: </b><br/>{buyOutput}<br/><br/>
+  </div>
 
-          </div>
+  <div id="col-2>
+<b>Agent sells out on dates: </b><br/>{sellOutput}<br/><br/>
+  </div>
+
+  </div>
         <div className="child">
           <p>
           <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
@@ -277,7 +280,7 @@ function App() {
     
     </div>
 </div>
-</div>    
+
   );
 }
 
