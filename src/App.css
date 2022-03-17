@@ -80,21 +80,21 @@ input:valid+span:after {
  
 #col-1 {
   position: relative;
-  width: 100%;
+  width: 50%;
   float: left;
-  height: 50%;
+  height: 100%;
 }
 
 #col-2 {
   position: relative;
-  width: 100%;
+  width: 50%;
   float: left;
-  height: 50%;
+  height: 100%;
 }
 
 p {
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   margin-right: 150px;
   margin-left: 150px;
 }
