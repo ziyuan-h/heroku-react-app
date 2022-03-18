@@ -49,6 +49,14 @@ body,html{
   background-size: cover;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
 input:invalid+span:after {
   content: '✖';
   padding-left: 5px;
