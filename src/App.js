@@ -205,6 +205,8 @@ function App() {
   
   return (
     <div className="App">
+              <h1>Ziyuan Huang's demo app</h1>
+              <h3>email: ziyuanh@umich.edu </h3>
 
                 <h2>Input</h2>
     
