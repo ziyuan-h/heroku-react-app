@@ -9,7 +9,7 @@ const decodeFileBase64 = (base64String) => {
       return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
     }).join("")
   );
-};
+}; 
 
 
 function App() {
