@@ -150,6 +150,13 @@ function App() {
       }
     }
   }
+  const clearResult = async (event) => {
+    console.log("RESET button");
+    document.getElementById("selectTimeRange").value = 'year';
+    document.getElementById("selectCompany").value = 'goog';
+    document.getElementById("initial_money").value = '10000';
+    console.log("Reset all values");
+}
 
   // handle submit
   const handleSubmitDebug = (event) => {
@@ -245,7 +252,9 @@ function App() {
 
             <div className="cont">  
 
-<button  type="submit" disabled={buttonDisable}><span>{buttonText}</span></button>
+                <button  type="submit" disabled={buttonDisable}><span>{buttonText}</span></button>
+                <a href="https://docs.google.com/document/d/1t4CtCamyv8l2ll5rF_j5x_jvsthFBVqiy1GOYd87Pts/edit?usp=sharing">REPORT LINK</a>
+                <input type="button" value="Reset" onClick={clearResult}></input>
 
             </div>
           </form>
