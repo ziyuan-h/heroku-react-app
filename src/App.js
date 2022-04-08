@@ -153,11 +153,11 @@ function App() {
   const clearResult = async (event) => {
     console.log("RESET button");
     document.getElementById("selectTimeRange").value = 'year';
-    document.getElementById("selectCompany").value = 'amzn';
+    document.getElementById("selectCompany").value = 'appl';
     document.getElementById("initial_money").value = '10000';
     console.log("Reset all values");
     setTimeRange('year')
-    setCompany('amzn')
+    setCompany('appl')
     setInitialMoney('10000')
 }
 
