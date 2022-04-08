@@ -254,11 +254,18 @@ function App() {
               </div>
 
             <div className="cont">  
-
+              <div>
                 <button  type="submit" disabled={buttonDisable}><span>{buttonText}</span></button>
-                <a href="https://docs.google.com/document/d/1t4CtCamyv8l2ll5rF_j5x_jvsthFBVqiy1GOYd87Pts/edit?usp=sharing">REPORT LINK</a>
-                <input type="button" value="Reset" onClick={clearResult}></input>
-
+              </div>
+              <div>
+                  <a href="https://docs.google.com/document/d/1t4CtCamyv8l2ll5rF_j5x_jvsthFBVqiy1GOYd87Pts/edit?usp=sharing">REPORT LINK</a>
+              </div>
+              <div>
+                <p>
+                    Press this button to view a possible set of working parameters. 
+                </p>
+                <input type="button" value="Example Working Parameters" onClick={clearResult}></input>
+              </div>
             </div>
           </form>
     
