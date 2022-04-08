@@ -156,6 +156,9 @@ function App() {
     document.getElementById("selectCompany").value = 'amzn';
     document.getElementById("initial_money").value = '10000';
     console.log("Reset all values");
+    setTimeRange('year')
+    setCompany('amzn')
+    setInitialMoney('10000')
 }
 
   // handle submit
