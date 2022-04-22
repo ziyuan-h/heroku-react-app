@@ -28,6 +28,7 @@ function App() {
   const [outputConsole, setOutputConsole] = React.useState("output");
   const [buyOutput, setBuyOutput] = React.useState("");
   const [sellOutput, setSellOutput] = React.useState("");
+  const [outputImgtr, setOutputImgtr] = React.useState("/images/digit.png")
   // debug use
   const [textBox, setTextBox] = React.useState("debug");
 
@@ -94,6 +95,13 @@ function App() {
     setHiddenImg(false);
     setOutputImg("data:image/jpeg;charset=utf-8;base64," + encodeURI(resultImgBytes))
   }
+  
+  // parse image result
+  const parseResultImageTrain = (resultImgBytes) => {
+    // document.getElementById("ItemPreview").src = "data:image/jpg;base64," + btoa(encodeURI(resultImgBytes));
+    setHiddenImg(false);
+    setOutputImgtr("data:image/jpeg;charset=utf-8;base64," + encodeURI(resultImgBytes))
+  }
 
   // asynchronous function to handle http GET request to api url
   // accept "resultRecieved", returns the same promise
@@ -117,6 +125,7 @@ function App() {
         // retrive the results from response
         var imageBytesData = data.body.result_img;
         var textData = data.body.result_txt;
+        var trainBytesData = data.body.train_img;
         console.log(data.body);
         console.log(imageBytesData);
         console.log(textData);
@@ -126,6 +135,9 @@ function App() {
 
         // parse the result text
         parseResultText(textData);
+        
+        // parse train image
+        parseResultImageTrain(trainBytesData);
 
         // end the while loop
         resultReceived = true;
@@ -296,6 +308,11 @@ function App() {
         <div>
 
           <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
+
+        </div>
+        <div>
+
+          <img id="Image" src={outputImgtr} alt="train figure" hidden={hiddenImg} />
 
         </div>
     
