@@ -164,9 +164,9 @@ function App() {
   }
   const clearResult = async (event) => {
     console.log("RESET button");
-    document.getElementById("selectTimeRange").value = 'year';
-    document.getElementById("selectCompany").value = 'aapl';
-    document.getElementById("initial_money").value = '10000';
+    document.getElementById("selectTimeRange").value = 'month';
+    document.getElementById("selectCompany").value = 'amzn';
+    document.getElementById("initial_money").value = '10400';
     console.log("Reset all values");
     setTimeRange('year')
     setCompany('aapl')
